@@ -6,7 +6,7 @@ const helados = [
     { nombre: 'Bombón helado de marca Helardo', precio: 1.5, valoracion: 2, abreviacion: 'helard'},
     { nombre: 'Palito de helado Artika', precio: 0.8, valoracio: 1, abreviacion: 'artika'},
     { nombre: 'Palito de helado de agua', precio: 0.6, valoracion: 2, abreviacion: 'agua'},
-    { nombre: 'Palito de helado de crema', precio: 1, valoracion: 3, abreviacion: 'crema'},
+    { nombre: 'Palito de helado de crema', precio: 1.0, valoracion: 3, abreviacion: 'crema'},
     { nombre: 'Potecito de helado de confites', precio: 2.9, valoracion: 5, abreviacion: 'confites'},
 ]
 
@@ -65,10 +65,7 @@ console.log('LISTA DE COMPRAS')
 // Lista de compras
 const carrito = []
 
-// Funcion helado comprado
-const heladoComprado = (helados) => {
-    console.log(`${helados.nombre} ......... $${helados.precio}`)
-}
+
 
 // Precio total
 const totalCarrito = () => {
@@ -84,45 +81,56 @@ const totalCarrito = () => {
 const listaHelados = () => {
     const heladoElegido = prompt('Elije un helado: Heladix, Heladovich, Helardo, Artika, Agua, Crema, Confites').toLowerCase()
 
+
+    // Funcion helado comprado
+    const heladoComprado = (resultadoFind) => {
+        console.log(`${resultadoFind.nombre} ....... $${resultadoFind.precio}`)
+    }
+
+
     //* SWITCH: Para cosas puntuales
     switch (heladoElegido) {
     case 'heladix':
         const resultadoFind1 = helados.find((helado) => helado.abreviacion == 'heladix')
-        console.log(`${helados.nombre} ......... $${helados.precio}`)
+        heladoComprado (resultadoFind1)
         carrito.push(resultadoFind1)
         break;  
     case 'heladovich':
         const resultadoFind2 = helados.find((helado) => helado.abreviacion == 'heladovich')
-        console.log(`${helados.nombre} ......... $${helados.precio}`)
+        heladoComprado (resultadoFind2)
         carrito.push(resultadoFind2)
-        break; 
+        break;  
     case 'helardo':
         const resultadoFind3 = helados.find((helado) => helado.abreviacion == 'helardo')
-        console.log(`${helados.nombre} ......... $${helados.precio}`)
+        heladoComprado (resultadoFind3)
         carrito.push(resultadoFind3)
-        break;
+        break;  
     case 'artika':
         const resultadoFind4 = helados.find((helado) => helado.abreviacion == 'artika')
-        console.log(`${helados.nombre} ......... $${helados.precio}`)
+        heladoComprado (resultadoFind4)
         carrito.push(resultadoFind4)
-        break;
+        break;  
     case 'agua':
         const resultadoFind5 = helados.find((helado) => helado.abreviacion == 'agua')
-        console.log(`${helados.nombre} ......... $${helados.precio}`)
+        heladoComprado (resultadoFind5)
         carrito.push(resultadoFind5)
         break;  
     case 'crema':
         const resultadoFind6 = helados.find((helado) => helado.abreviacion == 'crema')
-        console.log(`${helados.nombre} ......... $${helados.precio}`)
+        heladoComprado (resultadoFind6)
         carrito.push(resultadoFind6)
-        break;
+        break;  
     case 'confites':
         const resultadoFind7 = helados.find((helado) => helado.abreviacion == 'confites')
-        console.log(`${helados.nombre} ......... $${helados.precio}`)
+        heladoComprado (resultadoFind7)
         carrito.push(resultadoFind7)
-        break;   
+        break;  
+
+
+
+
     default :
-        console.log('Por favor, ingrese un dato correcto');
+        alert('Por favor, ingrese un dato correcto');
         break;
     }
 
@@ -131,6 +139,7 @@ const listaHelados = () => {
         listaHelados()
     }
     else {
+        console.log('')
         console.log(`Finalizo compra, su total a pagar es S/.${totalCarrito()}`)
         console.log(carrito)
     }
