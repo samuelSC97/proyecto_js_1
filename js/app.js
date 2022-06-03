@@ -4,7 +4,7 @@ const helados = [
     { nombre: 'Bombón helado de marca Heladix', precio: 1.7, valoracion: 4, abreviacion: 'heladix'},
     { nombre: 'Bombón helado de marca Heladovich', precio: 1.8, valoracion: 3, abreviacion: 'heladovich'},
     { nombre: 'Bombón helado de marca Helardo', precio: 1.5, valoracion: 2, abreviacion: 'helard'},
-    { nombre: 'Palito de helado Artika', precio: 0.8, valoracio: 1, abreviacion: 'artika'},
+    { nombre: 'Palito de helado Artika', precio: 0.8, valoracion: 1, abreviacion: 'artika'},
     { nombre: 'Palito de helado de agua', precio: 0.6, valoracion: 2, abreviacion: 'agua'},
     { nombre: 'Palito de helado de crema', precio: 1.0, valoracion: 3, abreviacion: 'crema'},
     { nombre: 'Potecito de helado de confites', precio: 2.9, valoracion: 5, abreviacion: 'confites'},
@@ -25,8 +25,8 @@ helados.forEach((helado) => {
 // Orden por precio
 let ordenarlos='si'
 while (ordenarlos=='si') {
-    const heladosFiltrados = prompt('¿Desea ordenarlos de menor a mayor precio?')
-    switch (heladosFiltrados) {
+    const heladosOrdenados = prompt('¿Desea ordenarlos de menor a mayor precio? Si/No')
+    switch (heladosOrdenados) {
         case 'si':
             console.log('')
             console.log('Helados del mas barato al mas caro:')
@@ -48,6 +48,7 @@ while (ordenarlos=='si') {
             })
 
             ordenarlos='no'
+            break;
 
         case 'no':
             ordenarlos='no'
@@ -55,6 +56,46 @@ while (ordenarlos=='si') {
 
         default:
             alert('Escribió un termino no valido. Vuelva a intentarlo')
+            ordenarlos='si'
+            break;
+    }
+}
+
+// Recomendar valoracion
+let mostrarValoracion='si'
+while (mostrarValoracion=='si') {
+    const heladosRecomendados = prompt('¿Desea una lista de los mas recomendados? Si/No')
+    switch (heladosRecomendados) {
+        case 'si':
+            console.log('')
+            console.log('Helados del mas recomendado al menos recomendado:')
+
+            // Ordenar lista de helados
+            helados.sort((a,b) => {
+                if (a.valoracion < b.valoracion) {
+                    return 1;
+                }
+                if (a.valoracion > b.valoracion) {
+                    return -1;
+                }
+                return 0;
+            })
+
+            // Lista de helados del barato al caro
+            helados.forEach((helado) => {
+                console.log(`${helado.nombre} ......... ${helado.valoracion} estrellas`)
+            })
+
+            mostrarValoracion='no'
+            break;
+
+        case 'no':
+            mostrarValoracion='no'
+            break;
+
+        default:
+            alert('Escribió un termino no valido. Vuelva a intentarlo')
+            break;
     }
 }
 
@@ -64,8 +105,6 @@ console.log('LISTA DE COMPRAS')
 
 // Lista de compras
 const carrito = []
-
-
 
 // Precio total
 const totalCarrito = () => {
@@ -81,14 +120,12 @@ const totalCarrito = () => {
 const listaHelados = () => {
     const heladoElegido = prompt('Elije un helado: Heladix, Heladovich, Helardo, Artika, Agua, Crema, Confites').toLowerCase()
 
-
     // Funcion helado comprado
     const heladoComprado = (resultadoFind) => {
         console.log(`${resultadoFind.nombre} ....... $${resultadoFind.precio}`)
     }
 
-
-    //* SWITCH: Para cosas puntuales
+    // SWITCH: Para cosas puntuales
     switch (heladoElegido) {
     case 'heladix':
         const resultadoFind1 = helados.find((helado) => helado.abreviacion == 'heladix')
@@ -125,10 +162,6 @@ const listaHelados = () => {
         heladoComprado (resultadoFind7)
         carrito.push(resultadoFind7)
         break;  
-
-
-
-
     default :
         alert('Por favor, ingrese un dato correcto');
         break;
@@ -140,7 +173,7 @@ const listaHelados = () => {
     }
     else {
         console.log('')
-        console.log(`Finalizo compra, su total a pagar es S/.${totalCarrito()}`)
+        console.log(`Finalizo su compra de helados, su total a pagar es S/.${totalCarrito()}`)
         console.log(carrito)
     }
 }
